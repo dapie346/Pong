@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://globals/globals.gd"
+UISounds="*res://globals/ui_sounds.tscn"
 
 [display]
 

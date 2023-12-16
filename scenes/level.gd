@@ -12,6 +12,9 @@ var count: int
 @onready var back_button: Button = $UI/PauseMenu/MarginContainer/BackButton
 
 func _ready():
+	for button in get_tree().get_nodes_in_group("buttons"):
+		UISounds.connect_hover_sound(button)
+		UISounds.connect_click_sound(button)
 	paddle_one.player = Globals.paddle_one_player
 	paddle_one.color = Globals.paddle_one_color
 	paddle_one.setup()
@@ -29,6 +32,7 @@ func _unhandled_input(event):
 
 func pause_menu_on():
 	get_tree().paused = true
+	UISounds.play_click()
 	pause_menu.show()
 	back_button.show()
 	header.text = "PAUSED"
@@ -50,6 +54,7 @@ func _on_scoring_zone_two_body_entered(_body):
 func point_scored():
 	var current_winning_score = max(paddle_one_score, paddle_two_score)
 	if current_winning_score < Globals.winning_score:
+		UISounds.play_point_scored()
 		start_new_round()
 	else:
 		show_winner(current_winning_score)
@@ -58,15 +63,17 @@ func show_winner(current_winning_score: int) -> void:
 	update_scoring_text()
 	var winning_color: String
 	if current_winning_score == paddle_one_score:
-		winning_color = Globals.player_one_color
+		winning_color = Globals.paddle_one_color
 	else:
-		winning_color = Globals.player_two_color
+		winning_color = Globals.paddle_two_color
+	UISounds.play_win()
 	header.text = winning_color.to_upper() + " WINS!"
 	pause_menu.show()
 	
 func start_new_round():
 	count = 3
 	$CountingTimer.start()
+	$AnimationPlayer.play("wrecking_ball")
 	update_scoring_text()
 	update_counting_text()
 	
@@ -81,8 +88,10 @@ func _on_counting_timer_timeout():
 func update_counting_text():
 	counting_text.show()
 	if count > 0:
+		UISounds.play_counting()
 		counting_text.text = str(count)
 	elif count == 0:
+		UISounds.play_start()
 		counting_text.text = "GO!"
 	else:
 		counting_text.hide()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://o8y4yp2o2me"]
+[gd_scene load_steps=12 format=3 uid="uid://o8y4yp2o2me"]
 
 [ext_resource type="PackedScene" uid="uid://8lhfr8sxs432" path="res://scenes/paddle.tscn" id="1_43bfc"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_twlji"]
 [ext_resource type="PackedScene" uid="uid://bef66cfv821lw" path="res://scenes/ball.tscn" id="2_hv17j"]
+[ext_resource type="Texture2D" uid="uid://dkdnf8jkmtic2" path="res://graphics/wrecking_ball.png" id="4_hpgtm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rex18"]
 size = Vector2(1366, 0)
@@ -17,8 +18,74 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_ijf0x"]
 events = [SubResource("InputEventKey_y702d")]
 
+[sub_resource type="Animation" id="Animation_pxar7"]
+resource_name = "wrecking_ball"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WreckingBall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1613, 499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WreckingBall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.0472]
+}
+
+[sub_resource type="Animation" id="Animation_t2kh6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WreckingBall:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0472]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WreckingBall:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1613, 499)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur0ai"]
+_data = {
+"RESET": SubResource("Animation_t2kh6"),
+"wrecking_ball": SubResource("Animation_pxar7")
+}
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_twlji")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 2000.0
+offset_bottom = 1200.0
+color = Color(0.294118, 0.352941, 0.67451, 1)
 
 [node name="PaddleOne" parent="." instance=ExtResource("1_43bfc")]
 position = Vector2(1306, 384)
@@ -34,6 +101,12 @@ collision_mask = 3
 visible = false
 position = Vector2(683, 384)
 collision_mask = 15
+
+[node name="WreckingBall" type="Sprite2D" parent="."]
+position = Vector2(1613, 499)
+rotation = -1.0472
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_hpgtm")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -123,13 +196,13 @@ text = "RED WINS!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="UI/PauseMenu"]
+[node name="MenuButton" type="Button" parent="UI/PauseMenu" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 35
 text = "MENU"
 
-[node name="ReplayButton" type="Button" parent="UI/PauseMenu"]
+[node name="ReplayButton" type="Button" parent="UI/PauseMenu" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 35
@@ -142,11 +215,18 @@ theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 150
 
-[node name="BackButton" type="Button" parent="UI/PauseMenu/MarginContainer"]
+[node name="BackButton" type="Button" parent="UI/PauseMenu/MarginContainer" groups=["buttons"]]
 visible = false
 layout_mode = 2
 shortcut = SubResource("Shortcut_ijf0x")
 text = "BACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ur0ai")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="body_entered" from="ScoringZoneOne" to="." method="_on_scoring_zone_one_body_entered"]
 [connection signal="body_entered" from="ScoringZoneTwo" to="." method="_on_scoring_zone_two_body_entered"]

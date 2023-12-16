@@ -34,19 +34,19 @@ grow_vertical = 2
 theme_override_constants/separation = 9
 alignment = 1
 
-[node name="NewGame" type="Button" parent="MainMenu"]
+[node name="NewGame" type="Button" parent="MainMenu" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "New Game"
 
-[node name="Options" type="Button" parent="MainMenu"]
+[node name="Options" type="Button" parent="MainMenu" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Options"
 
-[node name="Exit" type="Button" parent="MainMenu"]
+[node name="Exit" type="Button" parent="MainMenu" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
@@ -63,7 +63,7 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 90
-text = "PONG"
+text = "WRECKING PONG"
 
 [node name="GameModeMenu" type="VSplitContainer" parent="."]
 visible = false
@@ -88,13 +88,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="OnePlayer" type="Button" parent="GameModeMenu/GameMode"]
+[node name="OnePlayer" type="Button" parent="GameModeMenu/GameMode" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 28
 text = "One Player"
 
-[node name="TwoPlayers" type="Button" parent="GameModeMenu/GameMode"]
+[node name="TwoPlayers" type="Button" parent="GameModeMenu/GameMode" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 28
@@ -108,7 +108,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 15
 
-[node name="BackButton" type="Button" parent="GameModeMenu/MarginContainer"]
+[node name="BackButton" type="Button" parent="GameModeMenu/MarginContainer" groups=["buttons"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 28

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhjyf6wyit1b8"]
+[gd_scene load_steps=4 format=3 uid="uid://bhjyf6wyit1b8"]
 
 [ext_resource type="Script" path="res://scenes/ui/options_menu.gd" id="1_e3uoc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_scjjn"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_gcaf1"]
+events = [SubResource("InputEventKey_scjjn")]
 
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("1_e3uoc")
@@ -49,7 +56,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="SwitchPlayers" type="Button" parent="VBoxContainer/PlayerSettings"]
+[node name="SwitchPlayers" type="Button" parent="VBoxContainer/PlayerSettings" groups=["switches"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -71,7 +78,7 @@ text = "RED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SwitchColor" type="Button" parent="VBoxContainer/ColorSettings"]
+[node name="SwitchColor" type="Button" parent="VBoxContainer/ColorSettings" groups=["switches"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -109,7 +116,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="LowerScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings"]
+[node name="LowerScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 35
@@ -122,13 +129,13 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HigherScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings"]
+[node name="HigherScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 35
 text = "+"
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." groups=["buttons"]]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.9
@@ -142,6 +149,7 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
+shortcut = SubResource("Shortcut_gcaf1")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/PlayerSettings/SwitchPlayers" to="." method="_on_switch_players_pressed"]

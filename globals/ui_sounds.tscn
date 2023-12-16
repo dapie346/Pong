@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://u8yhcyw0tl0i"]
+
+[ext_resource type="Script" path="res://globals/ui_sounds.gd" id="1_a6v45"]
+[ext_resource type="AudioStream" uid="uid://d0tbp7agkkwmr" path="res://audio/win.wav" id="2_ag4ft"]
+[ext_resource type="AudioStream" uid="uid://dwvik5kjjkaq3" path="res://audio/music.wav" id="2_en6j3"]
+[ext_resource type="AudioStream" uid="uid://bpee5xgvloptw" path="res://audio/hover.ogg" id="3_3p4mj"]
+[ext_resource type="AudioStream" uid="uid://crt4s11skcltr" path="res://audio/click.ogg" id="4_lvrqt"]
+[ext_resource type="AudioStream" uid="uid://c0vsxum6lse4h" path="res://audio/switch.ogg" id="5_m2cw4"]
+[ext_resource type="AudioStream" uid="uid://m8au6kf2qqod" path="res://audio/counting.ogg" id="6_fydy6"]
+[ext_resource type="AudioStream" uid="uid://bceu51iop1jst" path="res://audio/start.ogg" id="7_2ddoi"]
+[ext_resource type="AudioStream" uid="uid://cwy2yf81riydx" path="res://audio/point_scored.ogg" id="8_qit2b"]
+
+[node name="UISounds" type="Node"]
+script = ExtResource("1_a6v45")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_en6j3")
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3p4mj")
+volume_db = 5.0
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lvrqt")
+
+[node name="Switch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m2cw4")
+
+[node name="Counting" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fydy6")
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2ddoi")
+
+[node name="PointScored" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qit2b")
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ag4ft")

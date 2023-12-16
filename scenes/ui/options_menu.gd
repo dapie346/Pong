@@ -14,6 +14,12 @@ var red: Color = Color("ff0000")
 
 
 func _ready():
+	for button in get_tree().get_nodes_in_group("buttons"):
+		UISounds.connect_hover_sound(button)
+		UISounds.connect_click_sound(button)
+	for button in get_tree().get_nodes_in_group("switches"):
+		UISounds.connect_hover_sound(button)
+		UISounds.connect_switch_sound(button)
 	update_players()
 	update_colors()
 	update_winning_score()
