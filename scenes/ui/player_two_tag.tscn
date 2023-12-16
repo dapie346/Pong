@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://djy15bytn3e06"]
+
+[ext_resource type="Texture2D" uid="uid://cakp2hgyyjvqj" path="res://graphics/buttons/w.png" id="1_i2i7h"]
+[ext_resource type="Texture2D" uid="uid://ctg5vkh3xu57t" path="res://graphics/buttons/s.png" id="2_ljeqt"]
+
+[node name="PlayerTwoTag" type="VBoxContainer"]
+size_flags_horizontal = 3
+
+[node name="PlayerTwoLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+text = "Player Two / AI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerTwoIcons" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Up" type="TextureRect" parent="PlayerTwoIcons"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_i2i7h")
+
+[node name="Down" type="TextureRect" parent="PlayerTwoIcons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ljeqt")

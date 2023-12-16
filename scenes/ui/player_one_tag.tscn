@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://opdgjyxdl6pc"]
+
+[ext_resource type="Texture2D" uid="uid://bs8w6qg6cdiin" path="res://graphics/buttons/up.png" id="1_nvwkf"]
+[ext_resource type="Texture2D" uid="uid://ctg43hrdf7sw7" path="res://graphics/buttons/down.png" id="2_w2utr"]
+
+[node name="PlayerOneTag" type="VBoxContainer"]
+size_flags_horizontal = 3
+
+[node name="PlayerTwoLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+text = "Player One"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerOneIcons" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Up" type="TextureRect" parent="PlayerOneIcons"]
+layout_mode = 2
+texture = ExtResource("1_nvwkf")
+
+[node name="Down" type="TextureRect" parent="PlayerOneIcons"]
+layout_mode = 2
+texture = ExtResource("2_w2utr")

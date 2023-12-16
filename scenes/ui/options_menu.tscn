@@ -1,0 +1,151 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhjyf6wyit1b8"]
+
+[ext_resource type="Script" path="res://scenes/ui/options_menu.gd" id="1_e3uoc"]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+script = ExtResource("1_e3uoc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.45098, 0.47451, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.075
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 75
+text = "OPTIONS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -106.5
+offset_right = 276.0
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PlayerSettings" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="SwitchPlayers" type="Button" parent="VBoxContainer/PlayerSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Switch Players"
+
+[node name="ColorSettings" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="ColorLabelTwo" type="Label" parent="VBoxContainer/ColorSettings"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 45
+text = "RED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchColor" type="Button" parent="VBoxContainer/ColorSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Switch Colors"
+
+[node name="ColorLabelOne" type="Label" parent="VBoxContainer/ColorSettings"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 45
+text = "BLUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="WinningScoreLabel" type="Label" parent="VBoxContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Winning Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinningSettings" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="LowerScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 35
+text = "-"
+
+[node name="WinningScore" type="Label" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HigherScore" type="Button" parent="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 35
+text = "+"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/PlayerSettings/SwitchPlayers" to="." method="_on_switch_players_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorSettings/SwitchColor" to="." method="_on_switch_color_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings/LowerScore" to="." method="_on_lower_score_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VSplitContainer/WinningSettings/HigherScore" to="." method="_on_higher_score_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
