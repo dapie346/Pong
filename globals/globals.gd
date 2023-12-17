@@ -6,6 +6,8 @@ enum Player {
 	AI
 }
 
+var current_ball_pos: Vector2
+var current_ball_speed: float
 var paddle_one_color: String = "blue"
 var paddle_two_color: String = "red"
 var paddle_one_player: Player = Player.ONE

@@ -9,8 +9,7 @@ radius = 12.0416
 
 [node name="Ball" type="CharacterBody2D"]
 disable_mode = 1
-floor_stop_on_slope = false
-floor_block_on_wall = false
+motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_bc6kk")
 
@@ -20,6 +19,12 @@ texture = ExtResource("1_scgyj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f2bun")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="CollisionSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_psqwp")
 volume_db = 20.0
+
+[node name="SpeedIncreaseTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
